@@ -1,13 +1,6 @@
-<script lang="tsx">
-import { defineComponent } from "vue";
-import { useRouter } from "vue-router";
-
-export default defineComponent({
-  setup() {
-    return () => <div class="chessroom-home-root"></div>;
-  },
-});
-</script>
+<template>
+  <div class="chessroom-home-root"></div>
+</template>
 
 <style lang="less">
 .chessroom-home {

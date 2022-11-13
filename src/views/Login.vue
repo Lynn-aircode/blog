@@ -1,22 +1,71 @@
+<template>
+  <div class="chessroom-login-root">
+    <div class="chessroom-login-left" :style="leftZoneWidth"></div>
+    <div class="chessroom-login-right">
+      <div class="chessroom-login-right-box">
+        <a-typography>
+          <a-typography-title>登录</a-typography-title>
+        </a-typography>
+        <a-form
+          :labelColProps="{ span: 0 }"
+          :wrapperColProps="{ span: 24 }"
+          :model="form"
+          :onSubmitSuccess="handleSubmit"
+        >
+          <a-form-item field="userName" :rules="userNameRules">
+            <a-input
+              size="large"
+              :modelValue="form.userName"
+              placeholder="用户名"
+              :onInput="
+                (args) => {
+                  form.userName = args;
+                }
+              "
+            ></a-input>
+          </a-form-item>
+          <a-form-item field="password" :rules="passwordRules">
+            <a-input-password
+              size="large"
+              :modelValue="form.password"
+              placeholder="密码"
+              :onInput="
+                (args) => {
+                  form.password = args;
+                }
+              "
+            ></a-input-password>
+          </a-form-item>
+          <a-form-item style="margin-top: 16px" field="password">
+            <a-button
+              :loading="submiting"
+              htmlType="submit"
+              size="large"
+              long
+              type="primary"
+            >
+              登录
+            </a-button>
+          </a-form-item>
+        </a-form>
+        <div class="space-between">
+          <a-link :onClick="toRegister">没有账号？去注册！</a-link>
+          <a-link>找回密码</a-link>
+        </div>
+        <div class="chessroom-login-right-box-jacker" :style="jackerHeight" />
+      </div>
+    </div>
+  </div>
+</template>
+
 <script lang="tsx">
 import { useUIContext } from "@/context";
-import {
-  Button,
-  FieldRule,
-  Form,
-  FormItem,
-  Input,
-  InputPassword,
-  Link,
-  Message,
-  TypographyParagraph,
-  TypographyTitle,
-} from "@arco-design/web-vue";
-import { defineComponent, reactive, ref } from "vue";
+import { computed, defineComponent, reactive, ref } from "vue";
 import { over } from "@/utils/ui";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
 import API from "@/api";
+import { FieldRule, Message } from "@arco-design/web-vue";
 
 export default defineComponent({
   setup() {
@@ -65,84 +114,34 @@ export default defineComponent({
     const UIContext = useUIContext();
     if (!UIContext) return () => null;
 
-    return () => (
-      <div class="chessroom-login-root">
-        <div
-          class="chessroom-login-left"
-          style={{
-            width: over(UIContext.breakpoint, "md") ? "420px" : "0",
-          }}
-        ></div>
-        <div class="chessroom-login-right">
-          <div class="chessroom-login-right-box">
-            <TypographyParagraph>
-              <TypographyTitle>登录</TypographyTitle>
-            </TypographyParagraph>
-            <Form
-              labelColProps={{ span: 0 }}
-              wrapperColProps={{ span: 24 }}
-              model={form}
-              onSubmitSuccess={handleSubmit}
-            >
-              <FormItem field="userName" rules={userNameRules}>
-                <Input
-                  size="large"
-                  modelValue={form.userName}
-                  placeholder="用户名"
-                  onInput={(args: string) => {
-                    form.userName = args;
-                  }}
-                ></Input>
-              </FormItem>
-              <FormItem field="password" rules={passwordRules}>
-                <InputPassword
-                  // @ts-ignore
-                  // arco 的 mixin 真是让人血压飙升
-                  size={"large"}
-                  modelValue={form.password}
-                  placeholder={"密码"}
-                  onInput={(args: string) => {
-                    form.password = args;
-                  }}
-                ></InputPassword>
-              </FormItem>
-              <FormItem style={{ marginTop: "16px" }} field="password">
-                <Button
-                  loading={submiting.value}
-                  htmlType="submit"
-                  size="large"
-                  long
-                  type="primary"
-                >
-                  登录
-                </Button>
-              </FormItem>
-            </Form>
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-between",
-              }}
-            >
-              <Link onClick={toRegister}>没有账号？去注册！</Link>
-              <Link>找回密码</Link>
-            </div>
-            <div
-              class="chessroom-login-right-box-jacker"
-              style={{
-                height: over(UIContext.breakpoint, "md") ? "12vh" : "40vh",
-              }}
-            />
-          </div>
-        </div>
-      </div>
+    const leftZoneWidth = computed(
+      () => `width: ${over(UIContext.breakpoint, "md") ? "420px" : "0"};`
     );
+    const jackerHeight = computed(
+      () => `height: ${over(UIContext.breakpoint, "md") ? "12vh" : "40vh"};`
+    );
+
+    return {
+      form,
+      leftZoneWidth,
+      jackerHeight,
+      toRegister,
+      toHome,
+      handleSubmit,
+      submiting,
+      userNameRules,
+      passwordRules,
+    };
   },
 });
 </script>
 
 <style lang="less">
+.space-between {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
 .chessroom {
   &-login {
     &-root {
