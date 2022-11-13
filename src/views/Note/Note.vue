@@ -8,20 +8,23 @@
     min="80px"
   >
     <template #first>
-      <a-typography-paragraph>Left</a-typography-paragraph>
+      <file-list />
     </template>
     <template #second>
-      <a-typography-paragraph>Right</a-typography-paragraph>
+      <MDEditor />
     </template>
   </a-split>
 </template>
 
 <script lang="ts">
+import FileList from "@/components/FileList";
+import MDEditor from "@/components/MDEditor";
 import { defineComponent, ref } from "vue";
 
 export default defineComponent({
+  components: { FileList, MDEditor },
   setup() {
-    const size = ref<number>(0.5);
+    const size = ref<number>(0.2);
     return {
       size,
     };

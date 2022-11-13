@@ -146,7 +146,7 @@ export default defineComponent({
   width: 100%;
   height: 52px;
   color: var(--color-text-1);
-  background-color: var(--color-bg-3);
+  background-color: var(--color-bg-2);
   padding: 0 8px;
   display: flex;
   flex-direction: row;
