@@ -9,7 +9,7 @@ import {
   Trigger,
 } from "@arco-design/web-vue";
 import {
-  IconEmail,
+  IconEdit,
   IconExport,
   IconFile,
   IconImport,
@@ -33,11 +33,10 @@ export default defineComponent({
     // 路由
     const router = useRouter();
     const toLogin = () => router.push("/login");
-    const breakpoint = useUIContext();
+    const toNote = () => router.push("/note");
     return () => (
       <div class="chessroom-header">
         <Logo />
-        {breakpoint?.breakpoint}
         <div>
           <Space size="small">
             <Button
@@ -55,11 +54,11 @@ export default defineComponent({
                   ),
               }}
             </Button>
-            <Button type="text">
+            <Button onClick={toNote} type="text">
               {{
                 icon: () => (
                   <Badge dot count={1}>
-                    <IconEmail class="chessroom-icon" size="20" />
+                    <IconEdit class="chessroom-icon" size="20" />
                   </Badge>
                 ),
               }}

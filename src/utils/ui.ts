@@ -1,4 +1,4 @@
-import { Breakpoint } from './responsive-observe';
+import { Breakpoint } from '../common/utils/responsive-observe';
 
 export const getBreakpoint = (screenWidth: number): Breakpoint => {
   if (screenWidth < 576) return 'xs';

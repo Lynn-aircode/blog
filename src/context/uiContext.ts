@@ -10,7 +10,7 @@ import {
 import responsiveObserve, {
   Breakpoint,
   responsiveArray,
-} from "@/utils/responsive-observe";
+} from "@/common/utils/responsive-observe";
 import { getBreakpoint } from "@/utils/ui";
 export interface UIContext {
   breakpoint: Breakpoint;

@@ -1,21 +1,18 @@
 <script lang="tsx">
-import { Layout, LayoutContent, LayoutHeader } from '@arco-design/web-vue';
-import { defineComponent } from 'vue';
-import { RouterView } from 'vue-router';
-import Header from '../components/Header.vue';
+import { Layout, LayoutContent, LayoutHeader } from "@arco-design/web-vue";
+import { defineComponent } from "vue";
+import { RouterView } from "vue-router";
+import Header from "../components/Header.vue";
 
 export default defineComponent({
-  components: {
-    Header,
-  },
   setup() {
     return () => (
       <Layout class="chessroom-root">
         <LayoutHeader class="chessroom-header-box">
-          <Header></Header>
+          <Header />
         </LayoutHeader>
         <LayoutContent class="chessroom-content">
-          <RouterView></RouterView>
+          <RouterView />
         </LayoutContent>
       </Layout>
     );
@@ -43,7 +40,7 @@ export default defineComponent({
     z-index: 1;
   }
 }
-[arco-theme='dark'] {
+[arco-theme="dark"] {
   .chessroom-content {
     background-color: var(--color-bg-1);
   }
