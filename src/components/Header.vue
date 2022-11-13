@@ -1,4 +1,5 @@
 <script lang="tsx">
+import { useUIContext } from "@/context";
 import {
   Badge,
   Button,
@@ -31,11 +32,12 @@ export default defineComponent({
     const store = useStore();
     // 路由
     const router = useRouter();
-    const toMessage = () => router.push("/message");
     const toLogin = () => router.push("/login");
+    const breakpoint = useUIContext();
     return () => (
       <div class="chessroom-header">
         <Logo />
+        {breakpoint?.breakpoint}
         <div>
           <Space size="small">
             <Button
@@ -67,7 +69,6 @@ export default defineComponent({
                 icon: () => <IconStar class="chessroom-icon" size="20" />,
               }}
             </Button>
-
             <Trigger position="br" popupTranslate={[0, 16]}>
               {{
                 content: () => (

@@ -1,18 +1,9 @@
 <script lang="tsx">
-import LogoVue from "@/components/Logo.vue";
-import PolishingCardVue from "@/components/PolishingCard.vue";
-import { Col, Row } from "@arco-design/web-vue";
-import { defineComponent, ref } from "vue";
+import { defineComponent } from "vue";
 import { useRouter } from "vue-router";
-
-interface gameInfo {
-  gameName: string;
-  path: string;
-}
 
 export default defineComponent({
   setup() {
-    const router = useRouter();
     return () => <div class="chessroom-home-root"></div>;
   },
 });

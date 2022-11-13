@@ -1,5 +1,5 @@
 <script lang="tsx">
-import { UIContext, UIInjectionKey } from "@/context";
+import { useUIContext } from "@/context";
 import {
   Button,
   FieldRule,
@@ -12,7 +12,7 @@ import {
   TypographyParagraph,
   TypographyTitle,
 } from "@arco-design/web-vue";
-import { defineComponent, inject, reactive, ref } from "vue";
+import { defineComponent, reactive, ref } from "vue";
 import { over } from "@/utils/ui";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
@@ -62,16 +62,15 @@ export default defineComponent({
     };
 
     // 获取 UI 上下文
-    const UIContext = inject(UIInjectionKey);
+    const UIContext = useUIContext();
+    if (!UIContext) return () => null;
 
     return () => (
       <div class="chessroom-login-root">
         <div
           class="chessroom-login-left"
           style={{
-            width: over((UIContext as UIContext).breakpoint, "md")
-              ? "420px"
-              : "0",
+            width: over(UIContext.breakpoint, "md") ? "420px" : "0",
           }}
         ></div>
         <div class="chessroom-login-right">
@@ -132,9 +131,7 @@ export default defineComponent({
             <div
               class="chessroom-login-right-box-jacker"
               style={{
-                height: over((UIContext as UIContext).breakpoint, "md")
-                  ? "12vh"
-                  : "40vh",
+                height: over(UIContext.breakpoint, "md") ? "12vh" : "40vh",
               }}
             />
           </div>
