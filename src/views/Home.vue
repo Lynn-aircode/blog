@@ -1,5 +1,7 @@
 <template>
-  <div class="chessroom-home-root"></div>
+  <div class="chessroom-home-root">
+    Blog 开发中
+  </div>
 </template>
 
 <style lang="less">
