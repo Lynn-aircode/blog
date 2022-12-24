@@ -8,7 +8,7 @@ export const postFactory = async <ParamsType, ResponseType>(
     headers: { token: localStorage.getItem("token") },
   });
   const ret = {} as ResponseType;
-  console.log("postFactory:", res);
+  // console.log("postFactory:", res);
   return ret;
 };
 
